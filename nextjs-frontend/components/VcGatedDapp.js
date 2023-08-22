@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { createPublicClient, http } from "viem";
