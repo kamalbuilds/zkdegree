@@ -12,8 +12,9 @@ import {
   Button,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 
-export default function Dynamiccard({ name, jobTitle, followers, imageUrl, avatarUrl }) {
+export default function Dynamiccard({ name, location , students, imageUrl, avatarUrl , url }) {
   return (
     <Center py={6}>
       <Box
@@ -46,31 +47,33 @@ export default function Dynamiccard({ name, jobTitle, followers, imageUrl, avata
             <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
               {name}
             </Heading>
-            <Text color={'gray.500'}>{jobTitle}</Text>
+            <Text color={'gray.500'}>{location}</Text>
           </Stack>
 
           <Stack direction={'row'} justify={'center'} spacing={6}>
             <Stack spacing={0} align={'center'}>
-              <Text fontWeight={600}>{followers}</Text>
+              <Text fontWeight={600}>{students}</Text>
               <Text fontSize={'sm'} color={'gray.500'}>
-                Followers
+                Students
               </Text>
             </Stack>
           </Stack>
 
-          <Button
-            w={'full'}
-            mt={8}
-            bg={useColorModeValue('#151f21', 'gray.900')}
-            color={'white'}
-            rounded={'md'}
-            _hover={{
-              transform: 'translateY(-2px)',
-              boxShadow: 'lg',
-            }}
-          >
-            Follow
-          </Button>
+          <Link href="/courses/[id]" as={`/university/${url}`} passHref>
+            <Button
+              w={'full'}
+              mt={8}
+              bg={useColorModeValue('#151f21', 'gray.900')}
+              color={'white'}
+              rounded={'md'}
+              _hover={{
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg',
+              }}
+            >
+              Select ✅
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Center>

@@ -60,7 +60,7 @@ export default function WithSubnavigation() {
             color={useColorModeValue("gray.800", "white")}
           >
             <Button as="a" href="/" variant={"link"}>
-              Logo
+              ZkDegree
             </Button>
           </Text>
 
@@ -248,22 +248,22 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
+    label: "Choose Category",
     children: [
       {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
+        label: "University",
+        subLabel: "Are you a University?",
+        href: "/choose",
       },
       {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
+        label: "Students",
+        subLabel: "Are you a Student?",
+        href: "/students",
       },
     ],
   },
   {
-    label: "Hire Designers",
-    href: "#",
+    label: "Pay Fees",
+    href: "/pay",
   },
 ]
