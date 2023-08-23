@@ -1,4 +1,6 @@
-import { ReactNode } from "react"
+// @ts-nocheck
+"use client"
+import { ReactNode } from "react";
 import {
   Box,
   Flex,
@@ -8,11 +10,11 @@ import {
   Container,
   Avatar,
   useColorModeValue,
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 
 const Testimonial = ({ children }: { children: ReactNode }) => {
-  return <Box>{children}</Box>
-}
+  return <Box>{children}</Box>;
+};
 
 const TestimonialContent = ({ children }: { children: ReactNode }) => {
   return (
@@ -42,16 +44,16 @@ const TestimonialContent = ({ children }: { children: ReactNode }) => {
     >
       {children}
     </Stack>
-  )
-}
+  );
+};
 
 const TestimonialHeading = ({ children }: { children: ReactNode }) => {
   return (
     <Heading as={"h3"} fontSize={"xl"}>
       {children}
     </Heading>
-  )
-}
+  );
+};
 
 const TestimonialText = ({ children }: { children: ReactNode }) => {
   return (
@@ -62,21 +64,21 @@ const TestimonialText = ({ children }: { children: ReactNode }) => {
     >
       {children}
     </Text>
-  )
-}
+  );
+};
 
 const TestimonialAvatar = ({
   src,
   name,
   title,
 }: {
-  src: string
-  name: string
-  title: string
+  src: string;
+  name: string;
+  title: string;
 }) => {
   return (
     <Flex align={"center"} mt={8} direction={"column"}>
-      <Avatar src={src}  mb={2} />
+      <Avatar src={src} mb={2} />
       <Stack spacing={-1} align={"center"}>
         <Text fontWeight={600}>{name}</Text>
         <Text fontSize={"sm"} color={useColorModeValue("gray.600", "gray.400")}>
@@ -84,16 +86,16 @@ const TestimonialAvatar = ({
         </Text>
       </Stack>
     </Flex>
-  )
-}
+  );
+};
 
-export default function WithSpeechBubbles() {
+export default function Testimonials() {
   return (
     <Box bg={useColorModeValue("gray.100", "gray.700")}>
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
-          <Heading>Our Clients Speak</Heading>
-          <Text>We have been working with clients around the world</Text>
+          <Heading>What Our Users Say</Heading>
+          <Text>Discover why our users love ZkDegree.</Text>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}
@@ -101,15 +103,29 @@ export default function WithSpeechBubbles() {
         >
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Efficient Collaborating</TestimonialHeading>
+              <TestimonialHeading>University Director Views</TestimonialHeading>
               <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
+              `&quot;`ZkDegree has revolutionized the way we handle academic credentials. It is secure, efficient, and a game-changer for universities.`&quot;`
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
               src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                "URL_TO_DIRECTOR_IMAGE"
+              }
+              name={"John Smith"}
+              title={"University Director"}
+            />
+          </Testimonial>
+          <Testimonial>
+            <TestimonialContent>
+              <TestimonialHeading>CEO`&apos;` Appreciation</TestimonialHeading>
+              <TestimonialText>
+              `&quot;`As a CEO, I found ZkDegree incredibly easy and secure to verify academic credentials. It streamlines our hiring process and ensures trust in our candidates.`&quot;`
+              </TestimonialText>
+            </TestimonialContent>
+            <TestimonialAvatar
+              src={
+                "URL_TO_CEO_IMAGE"
               }
               name={"Jane Cooper"}
               title={"CEO at ABC Corporation"}
@@ -117,38 +133,21 @@ export default function WithSpeechBubbles() {
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Intuitive Design</TestimonialHeading>
+              <TestimonialHeading>Student `&apos;` Testimonial</TestimonialHeading>
               <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
+              `&quot;`ZkDegree has made my academic journey more secure and convenient. I can now easily access and share my academic proofs while protecting my privacy.`&quot;`
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
               src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                "URL_TO_STUDENT_IMAGE"
               }
-              name={"Jane Cooper"}
-              title={"CEO at ABC Corporation"}
-            />
-          </Testimonial>
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Mindblowing Service</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"Jane Cooper"}
-              title={"CEO at ABC Corporation"}
+              name={"Alice Johnson"}
+              title={"Student"}
             />
           </Testimonial>
         </Stack>
       </Container>
     </Box>
-  )
+  );
 }

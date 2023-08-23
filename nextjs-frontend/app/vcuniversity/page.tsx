@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState } from 'react';
 import PolygonIDVerifier from "../../components/PolygonIDVerifier";
 import VcGatedDapp from "../../components/VcGatedDapp";
 import { Center, Card, Image, CardBody, Container } from "@chakra-ui/react";

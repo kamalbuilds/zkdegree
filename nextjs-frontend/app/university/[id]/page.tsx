@@ -10,30 +10,57 @@ import 'react-datepicker/dist/react-datepicker.css';
 // you can find sample schemas at https://github.com/iden3/claim-schema-vocab/blob/main/schemas/json
 // or you can create a custom schema using the schema builder: https://certs.dock.io/schemas
 const sampleSchema = {
-  url: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json',
-  name: 'KYCAgeCredential',
-  populateFunc(data) {
-      // NOTE: the attributes returned here MUST match the schema
+    url: 'https://schema.dock.io/UniversityDegreesVC5-V5-1693754749459.json', // Updated schema URL
+    name: 'University Degrees VC-4', // Updated schema name
+    populateFunc(data) {
+      // Updated populateFunc to match the new schema
       return {
-        birthday: getUnixTime(data.subject.dob),
-        documentType: 3324
+        semesterNumber: data.subject.semesterNumber,
+        graduationDate: data.subject.graduationDate,
+        gPA: data.subject.gPA,
+        issuer: data.subject.issuer,
+        lastName: data.subject.lastName,
+        firstName: data.subject.firstName,
+        id: data.subject.id,
       };
-    }
-};
+    },
+  };
+  
+// https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json
 
 export default function Home() {
   const [issuerName, setIssuerName] = useState();
   const [issuerProfile, setIssuerProfile] = useState();
-  const [credentialData, setCredentialData] = useState(
-    {
-      schema: sampleSchema.url,
-      subject: {}
-    });
+  const [credentialData, setCredentialData] = useState({
+    schema: sampleSchema.url,
+    subject: {
+      semesterNumber: 3, // Set default values or leave them empty as needed
+      graduationDate: '',
+      gPA: '',
+      issuer: '',
+      lastName: '',
+      firstName: '',
+      id: '',
+    },
+  });
+  const [did, setDid] = useState('');
+  const [didInfo, setDidInfo] = useState(null);
+
+  async function handleGetDidSubmit(e) {
+    e.preventDefault();
+    try {
+      // Make a request to fetch the DID information
+      const { data } = await axios.get(`../api/get-did?did=${did}`);
+      setDidInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const [claimQR, setClaimQR] = useState('');
 
   async function handleGenerateProfileSubmit(e) {
     e.preventDefault();
-    const { data } = await axios.post('api/create-did/', { issuerName });
+    const { data } = await axios.post('../api/create-did/', { issuerName });
     console.log(data);
     setIssuerProfile(data);
   }
@@ -41,6 +68,7 @@ export default function Home() {
   async function handleCreateCredentialRequest(e) {
     e.preventDefault();
 
+    // main code to create a credential request
     const credential = {
       schema: sampleSchema.url,
       issuer: issuerProfile.did,
@@ -49,7 +77,7 @@ export default function Home() {
       subject: sampleSchema.populateFunc(credentialData)
     };
 
-    const { data } = await axios.post('api/create-credential/', credential);
+    const { data } = await axios.post('../../api/create-did', credential);
     console.log(data);
     setClaimQR(data.qrUrl);
   }
@@ -83,6 +111,7 @@ export default function Home() {
               <br />
             </div>
           </div>
+          
           <div
             className="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8"
             style={{ width: '100%' }}>
@@ -91,7 +120,7 @@ export default function Home() {
                 onSubmit={handleGenerateProfileSubmit}
                 className="p-5"
                 style={{ maxWidth: '500px', margin: '0 auto' }}>
-                <h1 className="text-gray-800 font-bold text-2xl mb-6">Create a Polygon Issuer</h1>
+                <h1 className="text-gray-800 font-bold text-2xl mb-6">Create a Polygon Issuer for your University</h1>
                 <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
                   <input
                     id="name"
@@ -113,6 +142,39 @@ export default function Home() {
 
               </form>
             </div>
+
+            <div className="w-full px-8 md:px-32 lg:px-24">
+        <form
+          onSubmit={handleGetDidSubmit}
+          className="p-5"
+          style={{ maxWidth: '500px', margin: '0 auto' }}>
+          <h1 className="text-gray-800 font-bold text-2xl mb-6">Get DID Information</h1>
+          <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
+            <input
+              id="did"
+              className=" pl-2 w-full outline-none border-none"
+              name="did"
+              placeholder="Enter DID"
+              value={did}
+              onChange={(event) => setDid(event.target.value)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="block w-full bg-blue-600 mt-5 py-2 rounded-full hover:bg-blue-700 hover:-translate-y-1 transition-all duration-250 text-white font-semibold mb-2">
+            Get DID Information
+          </button>
+        </form>
+
+        {/* Display DID information */}
+        {didInfo && (
+          <div className="mt-5">
+            <h2 className="text-lg font-semibold">DID Information:</h2>
+            <pre>{JSON.stringify(didInfo, null, 2)}</pre>
+          </div>
+        )}
+      </div>
           </div>
         </div>
       </>

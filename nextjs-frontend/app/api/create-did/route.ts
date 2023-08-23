@@ -12,6 +12,9 @@ const polygonDidBody = {
   type: 'polygonid'
 };
 
+
+console.log(process.env.DOCK_API_TOKEN,process.env.DOCK_API_URL,"api");
+
 export default async (req, res) => {
   if (req.method !== 'POST') {
     res.status(400).json({});
