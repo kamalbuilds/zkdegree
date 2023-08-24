@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { createPublicClient, http } from "viem";
 import { polygonZkEvmTestnet } from "viem/chains";
@@ -12,6 +12,9 @@ import {
   Card,
   Center,
   VStack,
+  InputGroup,
+  Input,
+  Select,
 } from "@chakra-ui/react";
 import {
   getAccount,
@@ -20,6 +23,10 @@ import {
   waitForTransaction,
 } from "@wagmi/core";
 import demoAbi from "./demoSmartContract/demoAbi.json";
+import { Circle, CircleEnvironments, PaymentIntentCreationRequest } from "@circle-fin/circle-sdk";
+import Checkout from "./components/Circle/Checkout";
+import { CircleContext } from "./Contexts/CircleContext";
+
 
 function VcGatedDapp() {
   const chain = polygonZkEvmTestnet;
@@ -111,6 +118,36 @@ function VcGatedDapp() {
     }
   };
 
+  const { setCheckoutData } = useContext(CircleContext);
+
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const circle = new Circle(
+    "SAND_API_KEY:59f07ffab17d4f6b83ba00efceb85216:10ccefc2d0f30faba312b4e51bf8fbaf",
+    CircleEnvironments.sandbox // API base url
+  );
+
+  const [amount, setAmount] = useState(0);
+  const [currency, setCurrency] = useState('USD');
+
+  async function createCheckoutSession() {
+    setLoading(true);
+    const createCheckoutSessionRes =
+      await circle.checkoutSessions.createCheckoutSession({
+        successUrl: "https://www.example.com/success",
+        amount: {
+          amount: amount,
+          currency: currency,
+        },
+      });
+
+    console.log("Checkout session created", createCheckoutSessionRes)
+    setData(createCheckoutSessionRes?.data?.data);
+    // setCheckoutData(createCheckoutSessionRes?.data?.data);
+    setLoading(false);
+  }
+
   return (
     <div id="vc-gated-dapp">
       <Box background="black" color="white" py={4}>
@@ -179,6 +216,45 @@ function VcGatedDapp() {
                 </VStack>
               </Center>
             </Card>
+
+
+            <div className="flex flex-col md:flex-row">
+              <div className="flex flex-col flex-1 md:mr-4 mr-0">
+                <InputGroup mb='5'>
+                  <Input
+                    type="text"
+                    placeholder="Enter Amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)} />
+                </InputGroup>
+
+                <InputGroup mb='5'>
+                  <Select placeholder='Select option'
+                    value={currency}
+                    onChange={(e) => {
+                      setCurrency(e.target.value);
+                    }}
+                  >
+                    <option value='USD'>USDC</option>
+                    <option value='ETH'>Ethereum</option>
+                    <option value='BTC'>Bitcoin</option>
+                  </Select>
+                </InputGroup>
+
+                <Button onClick={() => {
+                  if (!loading) {
+                    createCheckoutSession();
+                  }
+                }}>
+                  {loading ? 'Loading...' : ' Pay with Circle'}
+                </Button>
+              </div>
+              <div className="flex-1 md:ml-4 ml-0 mt-4 md:mt-0">
+                {data && <Checkout data={data} />}
+              </div>
+            </div>
+
+
             <ul>
               <li>
                 Check out the Counter{" "}
@@ -218,7 +294,7 @@ function VcGatedDapp() {
           </div>
         </Container>
       </Box>
-    </div>
+    </div >
   );
 }
 
