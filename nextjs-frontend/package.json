@@ -11,6 +11,8 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.16",
     "@chakra-ui/react": "^2.4.9",
+    "@circle-fin/circle-sdk": "1.7.0",
+    "@circle-fin/circle-widgets-sdk": "1.0.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@next/font": "13.1.3",
