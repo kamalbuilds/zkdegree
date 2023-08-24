@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client"
 import { ChakraProvider } from "@chakra-ui/react"
-
+import "../styles/globals.css";
 import WithSubnavigation from "@/components/Navbar"
 import SmallWithSocial from "@/components/Footer"
 import React from "react";
