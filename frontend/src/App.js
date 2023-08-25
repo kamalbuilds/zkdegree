@@ -3,6 +3,7 @@ import { useState } from "react";
 import PolygonIDVerifier from "./PolygonIDVerifier";
 import VcGatedDapp from "./VcGatedDapp";
 import { Center, Card, Image, CardBody, Container } from "@chakra-ui/react";
+import University from "../src/components/University";
 
 function App() {
   // if you're developing and just want to see the dapp without going through the Polygon ID flow,
@@ -10,6 +11,7 @@ function App() {
   const [provedAccessBirthday, setProvedAccessBirthday] = useState(false);
   return (
     <>
+    <University />
       {provedAccessBirthday ? (
         <VcGatedDapp />
       ) : (

@@ -17,8 +17,7 @@ import QRCode from "react-qr-code";
 
 import { io } from "socket.io-client";
 
-const linkDownloadPolygonIDWalletApp =
-  "https://0xpolygonid.github.io/tutorials/wallet/wallet-overview/#quick-start";
+const linkDownloadPolygonIDWalletApp ="https://0xpolygonid.github.io/tutorials/wallet/wallet-overview/#quick-start";
 
 function PolygonIDVerifier({
   credentialType,

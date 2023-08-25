@@ -116,7 +116,7 @@ function VcGatedDapp() {
       <Box background="black" color="white" py={4}>
         <Container maxW={"80%"}>
           <Flex justifyContent="space-between">
-            <Heading>My VC Gated Dapp</Heading>
+            <Heading>My ZKDegree</Heading>
             <ConnectButton showBalance={false} />
           </Flex>
         </Container>
