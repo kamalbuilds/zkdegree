@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { NextApiRequest , NextApiResponse } from 'next';
 const axiosHeaders = {
   headers: {
     'DOCK-API-TOKEN': process.env.DOCK_API_TOKEN,
@@ -15,9 +15,10 @@ const polygonDidBody = {
 
 console.log(process.env.DOCK_API_TOKEN,process.env.DOCK_API_URL,"api");
 
-export default async (req, res) => {
+export async function POST(req : NextApiRequest, res : NextApiResponse) {
+
   if (req.method !== 'POST') {
-    res.status(400).json({});
+    res.json({});
     return;
   }
 
@@ -42,6 +43,6 @@ export default async (req, res) => {
     res.json(result.data);
   } catch (e) {
     console.error(e);
-    res.status(400).json({ error: e.message });
+    res.json({ error: e.message });
   }
 };

@@ -1,9 +1,9 @@
 // @ts-nocheck
 "use client"
 import { ChakraProvider } from "@chakra-ui/react"
-import "../styles/globals.css";
-import WithSubnavigation from "@/components/Navbar"
-import SmallWithSocial from "@/components/Footer"
+import "../../styles/globals.css";
+import WithSubnavigation from "@/src/components/Navbar"
+import SmallWithSocial from "@/src/components/Footer"
 import React from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";

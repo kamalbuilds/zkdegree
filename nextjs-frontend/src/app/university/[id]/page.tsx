@@ -50,7 +50,7 @@ export default function Home() {
     e.preventDefault();
     try {
       // Make a request to fetch the DID information
-      const { data } = await axios.get(`../api/get-did?did=${did}`);
+      const { data } = await axios.get(`../api/get-did/${did}`);
       setDidInfo(data);
     } catch (error) {
       console.error(error);
