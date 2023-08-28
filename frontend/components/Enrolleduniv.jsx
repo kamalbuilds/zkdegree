@@ -13,11 +13,11 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 
-export default function Dynamiccard({ name, location , students, imageUrl, avatarUrl , url }) {
-  return (
+export default function Enrolleduniv({ name, location , students, imageUrl, avatarUrl , url }) {
+    return (
     <Center py={6}>
       <Box
-        maxW={'360px'}
+        minW={'360px'}
         w={'full'}
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'2xl'}
@@ -58,7 +58,7 @@ export default function Dynamiccard({ name, location , students, imageUrl, avata
             </Stack>
           </Stack>
 
-          <Link href="/university/[id]" as={`/university/${url}`} passHref>
+          <Link href="/students/[id]" as={`/students/${url}`} passHref>
             <Button
               w={'full'}
               mt={8}

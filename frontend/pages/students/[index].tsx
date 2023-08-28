@@ -26,8 +26,7 @@ function App() {
                   <a href="https://0xpolygonid.github.io/tutorials/#core-concepts-of-polygon-id-verifiable-credentials-identity-holder-issuer-and-verifier-triangle-of-trust">
                     (Verifiable Credential)
                   </a>{" "}
-                  gated dapp. Prove you were born before January 1, 2023 to use
-                  the dapp
+                  gated dapp. Prove that you hold the Degree VC to access the dapp
                 </p>
 
                 <PolygonIDVerifier
@@ -50,20 +49,10 @@ function App() {
                 />
               </CardBody>
               <a
-                href="https://twitter.com/0ceans404"
+                href="https://twitter.com/0xkamal7"
                 target="_blank"
                 rel="noreferrer"
               >
-                <p
-                  style={{
-                    position: "absolute",
-                    bottom: "-15px",
-                    right: "0",
-                    fontSize: "8px",
-                  }}
-                >
-                  Template built with 💜 by Steph
-                </p>
               </a>
             </Card>
           </Container>

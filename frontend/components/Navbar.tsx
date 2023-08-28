@@ -254,12 +254,12 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "University",
         subLabel: "Are you a University?",
-        href: "/choose",
+        href: "/chooseuniversity",
       },
       {
         label: "Students",
         subLabel: "Are you a Student?",
-        href: "/students",
+        href: "/enrolleduniv",
       },
     ],
   },

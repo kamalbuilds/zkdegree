@@ -4,7 +4,7 @@ import axios from 'axios';
 import { getUnixTime } from 'date-fns/fp';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import Router, { useRouter } from '../../node_modules/next/router';
 // Here we're hard-coding a schema
 // you can find sample schemas at https://github.com/iden3/claim-schema-vocab/blob/main/schemas/json
 // or you can create a custom schema using the schema builder: https://certs.dock.io/schemas
@@ -28,7 +28,9 @@ const sampleSchema = {
 // https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json
 
 export default function Home() {
-  const [issuerName, setIssuerName] = useState();
+  const router = useRouter();
+  const { id } = router.query;
+  const [issuerName, setIssuerName] = useState(id);
   const [issuerProfile, setIssuerProfile] = useState();
   const [credentialData, setCredentialData] = useState({
     schema: sampleSchema.url,
@@ -63,7 +65,8 @@ export default function Home() {
     console.log(data);
     setIssuerProfile(data);
   }
-
+  console.log(issuerProfile,"issuerprofile")
+  
   async function handleCreateCredentialRequest(e) {
     e.preventDefault();
 
@@ -81,6 +84,7 @@ export default function Home() {
     setClaimQR(data.qrUrl);
   }
 
+  // first screen
   if (!issuerProfile) {
     return (
       <>
@@ -104,7 +108,7 @@ export default function Home() {
               </h1>
 
               <p className="text-white mt-1">
-                As a University issue a KYC Age Credential on Polygon ID.
+                As a University issue Certificates to your students on Polygon ID.
               </p>
               <br />
               <br />
@@ -125,7 +129,7 @@ export default function Home() {
                     id="name"
                     className=" pl-2 w-full outline-none border-none"
                     name="name"
-                    placeholder="Issuer Name"
+                    placeholder={`Issuer name ${id}`}
                     value={issuerName}
                     onChange={(event) =>
                       setIssuerName(event.target.value)}
@@ -142,7 +146,7 @@ export default function Home() {
               </form>
             </div>
 
-            <div className="w-full px-8 md:px-32 lg:px-24">
+        <div className="w-full px-8 md:px-32 lg:px-24">
         <form
           onSubmit={handleGetDidSubmit}
           className="p-5"
