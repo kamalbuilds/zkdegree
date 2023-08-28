@@ -38,9 +38,13 @@ function PolygonIDVerifier({
 
   // serverUrl is localServerURL if not running in prod
   // Note: the verification callback will always come from the publicServerURL
-  const serverUrl = window.location.href.startsWith("https")
-    ? publicServerURL
-    : localServerURL;
+  const isBrowser = typeof window !== "undefined";
+  const serverUrl = isBrowser && window.location.href.startsWith("https")
+  ? publicServerURL
+  : localServerURL;
+  // const serverUrl = window.location.href.startsWith("https")
+  //   ? publicServerURL
+  //   : localServerURL;
 
   const getQrCodeApi = (sessionId) =>
     serverUrl + `/api/get-auth-qr?sessionId=${sessionId}`;
@@ -101,7 +105,8 @@ function PolygonIDVerifier({
   };
 
   function openInNewTab(url) {
-    var win = window.open(url, "_blank");
+    var isBrowser = typeof window !== "undefined";
+    var win = isBrowser &&  window.open(url, "_blank");
     win.focus();
   }
 

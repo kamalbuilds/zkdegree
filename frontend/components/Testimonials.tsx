@@ -105,7 +105,7 @@ export default function Testimonials() {
             <TestimonialContent>
               <TestimonialHeading>University Director Views</TestimonialHeading>
               <TestimonialText>
-              `&quot;`ZkDegree has revolutionized the way we handle academic credentials. It is secure, efficient, and a game-changer for universities.`&quot;`
+              &quot; ZkDegree has revolutionized the way we handle academic credentials. It is secure, efficient, and a game-changer for universities &quot;
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
@@ -120,7 +120,7 @@ export default function Testimonials() {
             <TestimonialContent>
               <TestimonialHeading>CEO`&apos;` Appreciation</TestimonialHeading>
               <TestimonialText>
-              `&quot;`As a CEO, I found ZkDegree incredibly easy and secure to verify academic credentials. It streamlines our hiring process and ensures trust in our candidates.`&quot;`
+              &quot;As a CEO, I found ZkDegree incredibly easy and secure to verify academic credentials. It streamlines our hiring process and ensures trust in our candidates.&quot;
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
@@ -135,7 +135,7 @@ export default function Testimonials() {
             <TestimonialContent>
               <TestimonialHeading>Student `&apos;` Testimonial</TestimonialHeading>
               <TestimonialText>
-              `&quot;`ZkDegree has made my academic journey more secure and convenient. I can now easily access and share my academic proofs while protecting my privacy.`&quot;`
+              &quot;ZkDegree has made my academic journey more secure and convenient. I can now easily access and share my academic proofs while protecting my privacy.&quot;
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
